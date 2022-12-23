@@ -1,0 +1,141 @@
+﻿@model CreateContactPerAccount
+
+@{
+    ViewBag.Title = "Contactos";
+
+}
+@if (ViewBag.IdList > 0 && ViewBag.Controlador == 0)
+{
+    @Html.Partial("Partials/_Menu", Model)
+}
+
+@if (ViewBag.IdList > 0 && ViewBag.Controlador == 2)
+{
+    @Html.Partial("~/Views/Accounts/Partials/_Menu.cshtml", Model)
+}
+
+<h1 class="page-header">
+    <button id="contact-new" type="button" class="btn btn-default pull-right btn-sm">
+        <i data-toggle="tooltip" data-placement="top" title="Nueva categoría" class="fa fa-plus"></i>
+    </button>
+    @ViewBag.Title
+</h1>
+
+
+<div id="list_contact"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="contact-edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @using (Html.BeginForm("ContactSave", "Contact", FormMethod.Post))
+            {
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Contacto</h4>
+                </div>
+                <div class="modal-body">
+                    <contacts url="@Url.Action("GetContact", "Contact")"></contacts>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="submit"
+                            data-reset="true"
+                            data-ajax="true"
+                            class="btn btn-primary">
+                        Guardar
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="~/Assets/vue_components/dist/contacts.components.js"></script>
+    <script>
+        $(document).ready(function () {
+            let conf = {
+                class: 'table-striped table-bordered',
+                columnas: [
+                    { leyenda: 'Saludo', columna: 'Salutation' },
+                    { leyenda: 'Nombre', columna: 'FullName' },
+                    { leyenda: 'Email', columna: 'Email' },
+                    { leyenda: 'Cuenta', columna: 'AccountName' },
+                    { leyenda: 'Puesto', columna: 'JobTitle' },
+                    { leyenda: 'Detalle', style: 'width:40px;' },
+                    { leyenda: 'Eliminar', style: 'width:40px;' },
+                    { leyenda: 'Editar', style: 'width:40px;' }
+                ],
+                modelo: [
+                    { propiedad: 'Salutation' },
+                    { propiedad: 'FullName' },
+                    { propiedad: 'Email' },
+                    { propiedad: 'AccountName' },
+                    { propiedad: 'JobTitle' },
+                    {
+                        propiedad: 'Id', formato: function (tr, obj, value) {
+                            return '<button value="' + value + '" type="button" class="btn btn-success contact-detail"><i class="fa fa-eye"></i></button>';
+                        }
+                    },
+                    {
+                        propiedad: 'Id', formato: function (tr, obj, value) {
+                            return '<button value="' + value + '" type="button" class="btn btn-danger contact-delete"><i class="fa fa-trash"></i></button>';
+                        }
+                    },
+                    {
+                        propiedad: 'Id', formato: function (tr, obj, value) {
+                            return '<button value="' + value + '" type="button" class="btn btn-primary contact-edit"><i class="fa fa-edit"></i></button>';
+                        }
+                    },
+                ],
+                url: '@Url.Action("GetContacts", "Contact", new { id = ViewBag.IdList })',
+                limite: 20,
+                paginable: true,
+                columna: 'FullName',
+                columna_orden: 'ASC'
+            };
+
+            let grid = $("#list_contact").anexGrid(conf);
+
+            // WORK IN PROGRESS
+            grid.tabla().on('click', '.contact-detail', function () {
+                let value = $(this).val();
+                location.href = "/Contact/Details/" + value;
+            })
+
+            grid.tabla().on('click', '.contact-edit', function () {
+                let value = $(this).val();
+                $("#contact-edit").modal('show');
+                $Vm.$emit('contactSelectID', value);
+            })
+
+            grid.tabla().on('click', '.contact-delete', function () {
+                let value = $(this).val();
+
+                if (!confirm('Esta seguro de eliminar este registro?')) return;
+
+                $.post('@Url.Action("DeleteContact", "Contact")', {
+                    id: value
+                }, function(r) {
+                    if (!r.Response) {
+                        alert(r.Message)
+                    } else {
+                        grid.refrescar();
+                    }
+                }, 'json')
+            })
+
+            $("#contact-new").click(function() {
+                $("#contact-edit").modal('show');
+                $Vm.$emit('contactSelectID', 0);
+            })
+
+            //$("#pais").chosen({
+            //    display: "block", width: "100 %", height: "45px", padding: "10px 15px", color: "#2c3e50", font: "13px"});
+        })
+    </script>
+
+}

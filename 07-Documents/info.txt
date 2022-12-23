@@ -1,0 +1,14 @@
+link register: /Account/Register
+
+link autorizacion gerentes: [Authorize(Roles = RolesNames.Gerente]   (esto va en el controllador Dashboard)
+
+
+
+cuenta admin
+correo: pamela.pimentel@urp.pe
+pass: P4m3la---3
+
+
+Líder del proyecto HR Analytics, herramienta de ingesta, transformación y homologación de datos del centro corporativo y 12 empresas del grupo.
+Referente de People Analytics en el grupo empresarial, siendo pieza clave para el desarrollo e implementación de nuevas herramientas y soluciones de HR.
+Responsable de la gestión y exploración de datos para identificar tendencias, relaciones de variables y modelos predictivos.

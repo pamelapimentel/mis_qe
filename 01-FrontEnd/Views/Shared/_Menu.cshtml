@@ -1,0 +1,63 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    @*navbar navbar-inverse navbar-fixed-top
+    d-flex flex-column flex-shrink-0 p-3 text-bg-dark
+    d-flex flex-column flex-shrink-0 bg-light*@
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                @Parameters.ProjectName <i class="fa fa-angle-up"></i>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("List", "Lead")">
+                        <i class="fa fa-search"></i> Leads
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("List", "Opportunity")">
+                        <i class="fa fa-diamond"></i> Oportunidades
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("List", "Quote")">
+                        <i class="fa fa-money"></i> Cotizaciones
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("List", "Accounts", new { id = 0})">
+                        <i class="fa fa-building-o"></i> Cuentas
+                    </a>
+                </li>
+                <li>
+                    @*<a href="~/category/1/negocios">*@
+                    <a href="@Url.Action("List", "Contact")">
+                        <i class="fa fa-address-book-o"></i> Contactos
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("List", "Task")">
+                        <i class="fa fa-tasks"></i> Tareas
+                    </a>
+                </li>
+                @*<li>
+                    <a href="@Url.Action("List", "Contact")">
+                        <i class="fa fa-handshake-o"></i> Proyectos
+                    </a>
+                </li>*@
+                <li>
+                    <a href="@Url.Action("Index", "Dashboard")">
+                        <i class="fa fa-bar-chart-o"></i> Dashboard
+                    </a>
+                </li>
+            </ul>
+            @Html.Partial("Account/_LoginPartial")
+        </div>
+    </div>
+</div>

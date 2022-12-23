@@ -1,0 +1,42 @@
+﻿@model UserBasicInformationViewModel
+
+@{
+    ViewBag.Title = "Actualizar datos";
+}
+<h1 class="page-header">
+    @ViewBag.Title
+</h1>
+
+@using (Html.BeginForm("Update", "Account", FormMethod.Post))
+{
+    <div class="alert-container"></div>
+    @Html.HiddenFor(x => x.Id)
+
+    <div class="form-group">
+        <label>Nombre</label>
+        @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+        <span data-keyboard="FirstName" class="form-validation-failed"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Apellido Paterno</label>
+        @Html.TextBoxFor(x => x.FatherLastName, new { @class = "form-control" })
+        <span data-keyboard="FatherLastName" class="form-validation-failed"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Apellido Materno</label>
+        @Html.TextBoxFor(x => x.MotherLastName, new { @class = "form-control" })
+        <span data-keyboard="MotherLastName" class="form-validation-failed"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Teléfono</label>
+        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+        <span data-keyboard="PhoneNumber" class="form-validation-failed"></span>
+    </div>
+
+    <button data-ajax="true" type="submit" class="btn btn-default">
+        Guardar
+    </button>
+}

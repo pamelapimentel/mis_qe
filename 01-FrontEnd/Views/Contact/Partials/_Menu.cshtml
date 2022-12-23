@@ -1,0 +1,60 @@
+﻿
+<div class="btn-group btn-group-justified" role="group">
+    @if (ViewBag.Controlador == 1)
+    {
+        <div class="btn-group" role="group">
+            <a href="@Url.Action("Details", "Contact", new { id = Model.ContactId, id_vista = 1 })" class="btn btn-success">
+                <i class="fa fa-list-alt"></i> Resumen
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="btn-group" role="group">
+            <a href="@Url.Action("Details", "Contact", new { id = Model.ContactId, id_vista = 1 })" class="btn btn-default">
+                <i class="fa fa-list-alt"></i> Resumen
+            </a>
+        </div>
+    }
+
+    <div class="btn-group" role="group">
+        <a href="@Url.Action("DetailEdit", "Contact", new { id = Model.ContactId })" class="btn btn-default">
+            <i class="fa fa-address-book-o"></i> Perfil
+        </a>
+    </div>
+
+    @if (ViewBag.Controlador == 2)
+    {
+        <div class="btn-group" role="group">
+            <a href="@Url.Action("List", "Accounts", new { id = Model.AccountId, id_vista = 1 })" class="btn btn-success">
+                <i class="fa fa-building-o"></i> Cuenta
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="btn-group" role="group">
+            <a href="@Url.Action("List", "Accounts", new { id = Model.AccountId, id_vista = 1 })" class="btn btn-default">
+                <i class="fa fa-building-o"></i> Cuenta
+            </a>
+        </div>
+    }
+
+    <div class="btn-group" role="group">
+        <a href="@Url.Action("DetailEdit", "Lead")" class="btn btn-default">
+            <i class="fa fa-search"></i> Lead
+        </a>
+    </div>
+    <div class="btn-group" role="group">
+        <a href="@Url.Action("DetailEdit", "Opportunity")" class="btn btn-default">
+            <i class="fa fa-diamond"></i> Oportunidades
+        </a>
+    </div>
+    <div class="btn-group" role="group">
+        <a href="@Url.Action("DetailEdit", "Task")" class="btn btn-default">
+            <i class="fa fa-tasks"></i> Tareas
+        </a>
+    </div>
+</div>
+
+<br />

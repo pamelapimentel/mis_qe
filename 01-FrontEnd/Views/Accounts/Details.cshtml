@@ -1,0 +1,74 @@
+﻿@model AccountsCard
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+@Html.Partial("Partials/_Menu", Model)
+
+<div class="row">
+    <div class="col-sm-12 panel panel-body text-justify">
+        <h3>Cuenta: @Model.AccountName: Resumen</h3>
+        <div class="row">
+            <div class="col-sm-6">
+                <h3><b>@Model.AccountName</b></h3>
+                <p style="padding-inline:auto;">@Model.Industry</p>
+
+                <div class="panel panel-body" style="border-style: hidden; border-width: 1px; box-shadow: 0px 5px 10px -6px black;">
+                    <p>Celular: @Model.PhoneOffice</p>
+                    <p>Email: @Model.AccountEmail</p>
+                    <p>Sector: @Model.Sector</p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div>
+                    <h4 class="center-block"><b>Oportunidades</b></h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-body text-justify" style="border-style: hidden; border-width: 1px; box-shadow: 0px 5px 10px -6px black;">
+                                <div class="h1 text-center">
+                                    <p class="h1"><i class="fa fa-diamond"></i> <span style="margin-left:30px"></span>5</p>
+                                </div>
+                                <p class="text-center">Oportunidades Abiertas</p>
+                                <p class="text-center">(Monto S/.15 500,456)</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="panel panel-body text-justify" style="border-style: hidden; border-width: 1px; box-shadow: 0px 5px 10px -6px black;">
+                                <div class="h1 text-center">
+                                    <p class="h1">
+                                        <i class="fa fa-search"></i>
+                                        <span style="margin-left:30px"></span>
+                                        5
+                                    </p>
+                                </div>
+                                <p class="text-center">Leads Abiertos</p>
+                                <p class="text-center">(10 altas)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="center-block"><b>Tareas</b></h4>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel panel-body text-justify" style="border-style: hidden; border-width: 1px; box-shadow: 0px 5px 10px -6px black;">
+                                <div class="h1 text-center">
+                                    <p class="h1">
+                                        <i class="fa fa-tasks"></i>
+                                        <span style="margin-left:30px"></span>
+                                        5
+                                    </p>
+                                </div>
+                                <p class="text-center">Tareas no iniciadas</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
